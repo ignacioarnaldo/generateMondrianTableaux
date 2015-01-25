@@ -1,0 +1,126 @@
+
+body, html {
+    background-color: #f6f6f6;
+}
+
+/*This is the white-ish surface that we will fill with boxes, rows, and columns*/
+
+#canvas {
+    background-color: #fff4db;
+    width: 585px;
+    height: 585px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*These are the rows that will divide the the painting into three horizontal sections*/
+
+#twothirdsrow {
+    height: 385px;
+}
+
+#onethirdrow {
+    height: 185px;
+}
+
+#quarterrow {
+    height: 135px;
+}
+
+#halfrow {
+    height: 285px;
+}
+
+#linerow {
+    height: 15px;
+}
+
+
+/*These are the two columns within the rows that help hold an additional subset of boxes*/
+
+#lefttopcolumn {
+    width: 100px;
+}
+
+
+/* HORIZONTAL LINES - ONE VALUES FOR THICKNESS (thick) - and three values for width (full, third, two thirds)*/
+
+#horthickline {
+    height: 15px;
+}
+
+
+#horlineonethirdthick {
+    height: 15px;
+    width: 185px;
+}
+
+#horlinetwothirdsthick {
+    height: 15px;
+    width: 385px;
+}
+
+
+/* Vertical lines - ONE VALUES FOR THICKNESS (thick) - and three values for height (full, third, two thirds)*/
+
+#vertlinethick {
+    height: 600px;
+    width: 15px;
+}
+
+#vertlineonethirdthick {
+    height: 185px;
+    width: 15px;
+}
+
+#vertlinetwothirdsthick {
+    height: 385px;
+    width: 15px;
+}
+
+
+/*These are the boxes that give the painting its shape, including the black dividers*/
+
+#onethirdsquarebox {
+    height: 185px;
+    width: 185px;
+}
+
+#twothirdsquarebox {
+    height: 385px;
+    width: 385px;
+}
+
+#onethirdbytwothirdsbox {
+    height: 385px;
+    width: 185px;
+}
+
+#twothirdsbyonethirdsbox {
+    height: 185px;
+    width: 385px;
+}
+
+/*color classes. These are the CSS classes that will color in the blocks*/
+
+.red {
+    background-color: #cc3333;   
+}
+
+.blue {
+    background-color: #2f7fd8;   
+}
+
+.yellow {
+    background-color: #feda09;   
+}
+
+.black {
+    background-color: #393939;   
+}
+
+/*position class. This class helps make sure the elements line up next to each other*/
+
+.right {
+    float: right;   
+}
