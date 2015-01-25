@@ -1,15 +1,5 @@
-
-%% CREATE A DAG
-% N = 4; 
-% dag = zeros(N,N);
-% C = 1; S = 2; R = 3; W = 4;
-% dag(C,[R S]) = 1;
-% dag(R,W) = 1;
-% dag(S,W)=1;
-
-
 %% LOAD DATA
-data = csvread('/home/nacho/Dropbox/NetBeansProjects/GenerateMondrianTableauxHTML/paintings_good/good_paintings.csv');
+data = csvread('good_paintings.csv');
 datat = data';
 cases = num2cell(datat);
 
