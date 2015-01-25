@@ -220,8 +220,9 @@ dag_k2 = learn_struct_K2(cases, node_sizes, order, 'max_fan_in', 8);
 
 <h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 5: generate the htmls</h4>
 
-<p>To generate the html version of the generated paintings, run:</p>
-<pre><code>$ java -jar execs/generateHTMLs.jar generated_paintings.csv generated_htmls
+<p>To generate the html version of the generated paintings, download <a href="downloads/generateHTMLs.jar">this executable</a> and run:</p>
+<pre><code>$ mkdir generated_htmls
+java -jar execs/generateHTMLs.jar generated_paintings.csv generated_htmls
 </pre></code>
 
 <p>We show the 30 paintings below. We did it!</p>
