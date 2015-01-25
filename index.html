@@ -98,7 +98,7 @@
 <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generating all possible Tableaux</h3>
 
 <p><a href="downloads/allPaintings.jar">This program</a> exhaustively generates all feasible configurations in this notation (X1...X9). From the terminal:</p>
-<code><pre>$ java -jar execs/allPaintings.jar all_paintings.csv
+<code><pre>$ java -jar allPaintings.jar all_paintings.csv
 </pre></code>
 
 <p>Even with this simplification of Mondrian's tableaux, <strong>18433</strong> tableaux are created! Unfortunately, most of them (like the examples below) do not look great:</p>
@@ -124,7 +124,7 @@
 
 <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discarding Tableaux</h3>
 
-<p>After examination of the tableaux, we create a set of arbitrary rules that will help us discard "bad-looking" tableaux (note that this step is completely subjective). We discard the tableaux that satisfy one of the following rules:</p>
+<p>After examination of the tableaux, we create a set of arbitrary rules that will help us discard "bad-looking" tableaux (note that this step is completely subjective). We discard the tableaux that satisfy one of the following conditions:</p>
 
 <ol>
 <li>The tableau has 4 cells and 0 white cells.</li>
@@ -135,8 +135,8 @@
 <li>Cells on top of each other have the same color.</li>
 </ol>
 
-<p>To discard the bad-looking paintings according to this set of rules, please run:</p>
-<code><pre>$ java -jar execs/discardPaintings.jar all_paintings.csv good_paintings.csv bad_paintings.csv
+<p>To discard the bad-looking paintings according to this set of rules, please download <a href="downloads/discardPaintings.jar">this other executable</a> and run:</p>
+<code><pre>$ java -jar discardPaintings.jar all_paintings.csv good_paintings.csv bad_paintings.csv
 </pre></code>
 
 <p>After filtering the tableaux, we are left with 649 great tableaux! Below we show 4 nice paintings:</p>
@@ -164,7 +164,7 @@
 
 <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modeling the tableaux with Bayesian networks</h3>
 
-<p>Let is say that we do not want to store all 649 tableaux. Instead, we want to learn the patterns that characterize these "good" tableaux, and generate new aesthetic tableaux on the fly. We can learn the structure and parameters of a Bayesian network from which we can sample as many tableaux as we want! For this part we use the <a href="https://code.google.com/p/bnt/">Bayes Net Toolbox for Matlab by Kevin Murphy</a>. You can download the Matlab code for the following steps <a href="">here</a>.</p>
+<p>Let is say that we do not want to store all 649 tableaux. Instead, we want to learn the patterns that characterize these "good" tableaux, and generate new aesthetic tableaux on the fly. We can learn the structure and parameters of a Bayesian network from which we can sample as many tableaux as we want! For this part we use the <a href="https://code.google.com/p/bnt/">Bayes Net Toolbox for Matlab by Kevin Murphy</a>. You can download the Matlab code for the following steps <a href="downloads/">here</a>.</p>
 <br>
 
 
