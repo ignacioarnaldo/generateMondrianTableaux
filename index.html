@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Generatemondriantableaux by ignacioarnaldo</title>
+    <title>Mondrian Tableaux by ignacioarnaldo</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -17,47 +17,300 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Generatemondriantableaux</h1>
-        <p>Generate simple Mondrian Tableaux</p>
-        <p class="view"><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux">View the Project on GitHub <small>ignacioarnaldo/generateMondrianTableaux</small></a></p>
+        <h1>Generate simple Mondrian Tableaux</h1>
+	<br>
+        <p class="view"><a href="https://github.com/ignacioarnaldo/floorplanning">View the Project on GitHub <small>ignacioarnaldo/floorplanning</small></a></p>
         <ul>
-          <li><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux">View On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/ignacioarnaldo/floorplanning/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ignacioarnaldo/floorplanning/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ignacioarnaldo/floorplanning">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Have you ever seen one of Mondrian's Tableaux and thought: "mmmm I could paint that". Well, this tutorial explores an AI method to generate <strong><em>many</em></strong>!</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>Let is start by examining these handcrafted examples:</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<TABLE>
+    <TR>
+	<TD><center>Example 1</center></TD>
+	<TD><center>Example 2</center></TD>
+        <TD><center>Example 3</center></TD>
+        <TD><center>Example 4</center></TD>
+    </TR>
+    <TR>
+	<TD><center><img width="200" height="200" src="images/hc1.png" alt="hc1" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/hc2.png" alt="hc2" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/hc3.png" alt="hc3" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/hc4.png" alt="hc4" Vspace="1"></center></TD>
+    </TR>
+</TABLE>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>We can generate a large number of Tableaux like these ones following simple 4 steps:</p>
 
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<ol>
+<li>Split the tableau in two rows such that one of the rows occupies one third of the tableau and the other occupies the remaining two thirds.</li>
+<li>Split the first row into two (also with a one-third vs two third split) or into three equal columns.</li>
+<li>Split the second row into two (also with a one-third vs two third split) or into three equal columns.</li>
+<li>Assign a color (white, red, blue, or yellow) to each of the resulting cells.</li>
+</ol>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>There will be at least 4 cells and at most 6 cells (in the case where the two rows are split into three columns). This means that we can code these tableaux with 9 variables where 3 variables (X1, X2, X3) determine the structure of the tableau, and 6 variables (X4, X5, X6, X7, X8, X9) code for the cell colors:</p>
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<TABLE>
+    <TR>
+	<TD><center>Variable</center></TD>
+	<TD><center>X1</center></TD>
+	<TD><center>X2</center></TD>
+        <TD><center>X3</center></TD>
+        <TD><center>X4 ... X9</center></TD>
+    </TR>
+    <TR>
+	<TD><center>Action</center></TD>
+	<TD><center>Split tableau into 2 rows</center></TD>
+	<TD><center>Split 1st row into 2 or 3 columns</center></TD>
+	<TD><center>Split 2nd row into 2 or 3 columns</center></TD>
+	<TD><center>Assign one color per cell</center></TD>
+    </TR>
+    <TR>
+	<TD><center>Choices</center></TD>
+	<TD><center>(1/3,2/3) or (2/3,1/3)</center></TD>
+	<TD><center>(1/3,2/3) or (2/3,1/3) or (1/3,1/3,1/3)</center></TD>
+	<TD><center>(1/3,2/3) or (2/3,1/3) or (1/3,1/3,1/3)</center></TD>
+	<TD><center>white, red, blue, yellow, dummy</center></TD>
+    </TR>
+    <TR>
+	<TD><center>Possible values</center></TD>
+	<TD><center>{1,2}</center></TD>
+	<TD><center>{1,2,3}</center></TD>
+	<TD><center>{1,2,3}</center></TD>
+	<TD><center>{1,2,3,4,5}</center></TD>
+    </TR>
+</TABLE>
+<br>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+
+
+<h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generating all possible Tableaux</h3>
+
+<p>With this notation (X1...X9), we create a program that exhaustively generates all feasible configurations. We can download it from here. To generate the html version of all possible tableaux yourself, please run:</p>
+<code><pre>$ java -jar execs/allPaintings.jar all_paintings.csv
+</pre></code>
+
+<p>Even with this simplification of Mondrian's tableaux, <strong>18433</strong> tableaux are created! Unfortunately, most of them (like the examples below) do not look great:</p>
+
+<TABLE>
+    <TR>
+	<TD><center>Bad example 1</center></TD>
+	<TD><center>Bad example 2</center></TD>
+        <TD><center>Bad example 3</center></TD>
+        <TD><center>Bad example 4</center></TD>
+        <TD><center>Bad example 5</center></TD>
+    </TR>
+    <TR>
+	<TD><center><img width="200" height="200" src="images/b1.png" alt="b1" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/b2.png" alt="b2" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/b3.png" alt="b3" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/b4.png" alt="b4" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/b5.png" alt="b4" Vspace="1"></center></TD>
+    </TR>
+</TABLE>
+<br>
+
+
+<h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discarding Tableaux</h3>
+
+<p>After examination of the tableaux, we create a set of arbitrary rules that will help us discard "bad-looking" tableaux (note that this step is completely subjective). We discard the tableaux that satisfy one of the following rules:</p>
+
+<ol>
+<li>The tableau has 4 cells and 0 white cells.</li>
+<li>The tableau has 5 or 6 cells and 0-1 white cells.</li>
+<li>There are only two colors, out of which white is one of them.</li>
+<li>The tableau has 5 or 6 cells and there are only three colors, out of which white is one of them.</li>
+<li>Two consecutive cells in the same row have the same color.</li>
+<li>Cells on top of each other have the same color.</li>
+</ol>
+
+<p>To discard the bad-looking paintings according to this set of rules, please run:</p>
+<code><pre>$ java -jar execs/discardPaintings.jar all_paintings.csv good_paintings.csv bad_paintings.csv
+</pre></code>
+
+<p>After filtering the tableaux, we are left with 649 great tableaux! Below we show 4 nice paintings:</p>
+
+<TABLE>
+    <TR>
+	<TD><center>Good example 1</center></TD>
+	<TD><center>Good example 2</center></TD>
+        <TD><center>Good example 3</center></TD>
+        <TD><center>Good example 4</center></TD>
+	<TD><center>Good example 5</center></TD>
+    </TR>
+    <TR>
+	<TD><center><img width="200" height="200" src="images/g1.png" alt="g1" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/g2.png" alt="g2" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/g3.png" alt="g3" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/g4.png" alt="g4" Vspace="1"></center></TD>
+	<TD><center><img width="200" height="200" src="images/g5.png" alt="g4" Vspace="1"></center></TD>
+    </TR>
+</TABLE>
+<br>
+
+
+
+
+<h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modeling the tableaux with Bayesian networks</h3>
+
+<p>Let is say that we do not want to store all 649 tableaux. Instead, we want to learn the patterns that characterize these "good" tableaux, and generate new aesthetic tableaux on the fly. We can learn the structure and parameters of a Bayesian network from which we can sample as many tableaux as we want! For this part we use the <a href="https://code.google.com/p/bnt/">Bayes Net Toolbox for Matlab by Kevin Murphy</a>. You can download the Matlab code for the following steps <a href="">here</a>.</p>
+<br>
+
+
+<h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Learning the dependencies between variables</h4>
+
+<p>Dependencies between variables can be represented graphically with Directed Acyclic Graphs (DAG) where:
+<li>nodes correspond to the variables of the problem (X1,...,X9), </li>
+<li>an edge between two nodes indicates that the two variables are conditionally dependent.</li></p>
+
+<p>The goal of this step is to learn a DAG that captures the conditional dependencies between the variables X1,...,X9. We help the process by entering manually the number of discrete emissions (called choices above) and order of the variables X1,...,X9, and run the K2 algorithm to learn the structure of the DAG with the 649 "good" paintings:</p>
+<code><pre>node_sizes = [2 3 3 5 5 5 5 5 5];
+order = [X1 X2 X3 X4 X5 X6 X7 X8 X9];
+dag_k2 = learn_struct_K2(cases, node_sizes, order, 'max_fan_in', 8);
+</pre></code>
+<br>
+
+<TABLE style="table-layout:fixed">
+    <TR>
+	<TD>The obtained Directed Acyclic Graph (DAG) captures well the hierarchy of our representation. In fact, X8 and X9 (Nodes 8 and 9) both depend on X2 and X3 (nodes 2 and 3). This is exactly what we should expect since X2 and X3 determine the number of cells of the painting, and if the final number of cells is 4 (or 5) then the color assigned to X8 (and X9) will be the dummy value <em>5</em>.</TD>
+	<TD><center><img width="160" height="250" src="images/dag_k2.jpg" alt="dag_k2" Vspace="1"></center></TD>
+    </TR>
+</TABLE>
+
+<br>
+
+
+<h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Initializing a Bayesian Network</h4>
+
+<p>Let is create a Bayesian network with the generated DAG:</p>
+<pre><code>bnet_k2 = mk_bnet(dag_k2, node_sizes, 'names', {'X1','X2','X3','X4','X5','X6','X7','X8','X9'}, 'discrete', 1:9);
+</pre></code>
+<br>
+
+
+<h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3: Learning the parameters of the network</h4>
+
+<p>We now compute the maximum likelihood parameters of the Bayesian network with the 649 "good" paintings:</p>
+<pre><code>bnet_k2 = learn_params(bnet_k2, cases);
+</pre></code>
+
+
+<h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4: sample paintings from the learned model</h4>
+
+<p>Once the parameters of the model are learned, we can generate as many samples as we want with:</p>
+
+<pre><code>sample = sample_bnet(bnet_k2);
+</pre></code>
+
+<p>We sample 10000 paintings with replacement and select the 30 most frequent ones.</p>
+
+<h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 5: generate the htmls</h4>
+
+<p>To generate the html version of the generated paintings, run:</p>
+<pre><code>$ java -jar execs/generateHTMLs.jar generated_paintings.csv generated_htmls
+</pre></code>
+
+<p>We show the 30 paintings below. We did it!</p>
+<TABLE>
+    <TR>
+	<TD><center>Top 1</center></TD>
+	<TD><center>Top 2</center></TD>
+        <TD><center>Top 3</center></TD>
+        <TD><center>Top 4</center></TD>
+	<TD><center>Top 5</center></TD>
+	<TD><center>Top 6</center></TD>
+	<TD><center>Top 7</center></TD>
+        <TD><center>Top 8</center></TD>
+        <TD><center>Top 9</center></TD>
+	<TD><center>Top 10</center></TD>
+    </TR>
+    <TR>
+	<TD><center><img width="100" height="100" src="images/top1.png" alt="top1" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top2.png" alt="top2" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top3.png" alt="top3" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top4.png" alt="top4" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top5.png" alt="top5" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top6.png" alt="top6" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top7.png" alt="top7" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top8.png" alt="top8" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top9.png" alt="top9" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top10.png" alt="top10" Vspace="1"></center></TD>
+    </TR>
+</TABLE>
+<br>
+
+<TABLE>
+    <TR>
+	<TD><center>Top 11</center></TD>
+	<TD><center>Top 12</center></TD>
+        <TD><center>Top 13</center></TD>
+        <TD><center>Top 14</center></TD>
+	<TD><center>Top 15</center></TD>
+	<TD><center>Top 16</center></TD>
+	<TD><center>Top 17</center></TD>
+        <TD><center>Top 18</center></TD>
+        <TD><center>Top 19</center></TD>
+	<TD><center>Top 20</center></TD>
+    </TR>
+    <TR>
+	<TD><center><img width="100" height="100" src="images/top11.png" alt="top11" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top12.png" alt="top12" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top13.png" alt="top13" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top14.png" alt="top14" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top15.png" alt="top15" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top16.png" alt="top16" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top17.png" alt="top17" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top18.png" alt="top18" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top19.png" alt="top19" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top20.png" alt="top20" Vspace="1"></center></TD>
+    </TR>
+</TABLE>
+<br>
+
+<TABLE>
+    <TR>
+	<TD><center>Top 21</center></TD>
+	<TD><center>Top 22</center></TD>
+        <TD><center>Top 23</center></TD>
+        <TD><center>Top 24</center></TD>
+	<TD><center>Top 25</center></TD>
+	<TD><center>Top 26</center></TD>
+	<TD><center>Top 27</center></TD>
+        <TD><center>Top 28</center></TD>
+        <TD><center>Top 29</center></TD>
+	<TD><center>Top 30</center></TD>
+    </TR>
+    <TR>
+	<TD><center><img width="100" height="100" src="images/top21.png" alt="top21" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top22.png" alt="top22" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top23.png" alt="top23" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top24.png" alt="top24" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top25.png" alt="top25" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top26.png" alt="top26" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top27.png" alt="top27" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top28.png" alt="top28" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top29.png" alt="top29" Vspace="1"></center></TD>
+	<TD><center><img width="100" height="100" src="images/top30.png" alt="top30" Vspace="1"></center></TD>
+    </TR>
+</TABLE>
+
+<h3><a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>This project was developed by Ignacio Arnaldo (<a href="https://github.com/ignacioarnaldo" class="user-mention">@ignacioarnaldo</a>)</p>
+
+
+
       </section>
     </div>
     <footer>
@@ -65,6 +318,8 @@ $ git checkout gh-pages
       <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
     </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+
     
   </body>
 </html>
