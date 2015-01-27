@@ -139,7 +139,7 @@
 <code><pre>$ java -jar discardPaintings.jar all_paintings.csv good_paintings.csv bad_paintings.csv
 </pre></code>
 
-<p>After filtering the tableaux, we are left with 649 great tableaux! Below we show 4 nice paintings:</p>
+<p>After filtering the tableaux, we are left with 648 great tableaux! Below we show 4 nice paintings:</p>
 
 <TABLE>
     <TR>
@@ -177,7 +177,7 @@ following steps <a href="downloads/bnn_k2.m"> from here</a>.</p>
 <li>nodes correspond to the variables of the problem (X1,...,X9), </li>
 <li>an edge between two nodes indicates that the two variables are conditionally dependent.</li></p>
 
-<p>The goal of this step is to learn a DAG that captures the conditional dependencies between the variables X1,...,X9. We help the process by entering manually the number of discrete emissions (called choices above) and order of the variables X1,...,X9, and run the K2 algorithm to learn the structure of the DAG with the 649 "good" paintings:</p>
+<p>The goal of this step is to learn a DAG that captures the conditional dependencies between the variables X1,...,X9. We help the process by entering manually the number of discrete emissions (called choices above) and order of the variables X1,...,X9, and run the K2 algorithm to learn the structure of the DAG with the 648 "good" paintings:</p>
 <code><pre>node_sizes = [2 3 3 5 5 5 5 5 5];
 order = [X1 X2 X3 X4 X5 X6 X7 X8 X9];
 dag_k2 = learn_struct_K2(cases, node_sizes, order, 'max_fan_in', 8);
@@ -204,7 +204,7 @@ dag_k2 = learn_struct_K2(cases, node_sizes, order, 'max_fan_in', 8);
 
 <h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3: Learning the parameters of the network</h4>
 
-<p>We now compute the maximum likelihood parameters of the Bayesian network with the 649 "good" paintings:</p>
+<p>We now compute the maximum likelihood parameters of the Bayesian network with the 648 "good" paintings:</p>
 <pre><code>bnet_k2 = learn_params(bnet_k2, cases);
 </pre></code>
 
