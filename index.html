@@ -19,18 +19,18 @@
       <header>
         <h1>Generate simple Mondrian Tableaux</h1>
 	<br>
-        <p class="view"><a href="https://github.com/ignacioarnaldo/floorplanning">View the Project on GitHub <small>ignacioarnaldo/floorplanning</small></a></p>
+        <p class="view"><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux">View the Project on GitHub <small>ignacioarnaldo/generateMondrianTableaux</small></a></p>
         <ul>
-          <li><a href="https://github.com/ignacioarnaldo/floorplanning/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ignacioarnaldo/floorplanning/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ignacioarnaldo/floorplanning">View On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ignacioarnaldo/generateMondrianTableaux">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
 
 <p>Have you ever seen one of Mondrian's Tableaux and thought: "mmmm I could paint that". Well, this tutorial explores an AI method to generate <strong><em>many</em></strong>!</p>
 
-<p>Let is start by examining these handcrafted examples:</p>
+<p>Let's start by examining these handcrafted examples:</p>
 
 
 <TABLE>
@@ -164,7 +164,7 @@
 
 <h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modeling the tableaux with Bayesian networks</h3>
 
-<p>Let is say that we do not want to store all 649 tableaux. Instead, we want to learn the patterns that characterize these "good" tableaux, and generate 
+<p>Let's say that we do not want to store all 649 tableaux. Instead, we want to learn the patterns that characterize these "good" tableaux, and generate 
 new aesthetic tableaux on the fly. We can learn the structure and parameters of a Bayesian network from which we can sample as many tableaux as we want! 
 For this part we use the <a href="https://code.google.com/p/bnt/">Bayes Net Toolbox for Matlab by Kevin Murphy</a>. You can download the Matlab code for the 
 following steps <a href="downloads/bnn_k2.m"> from here</a>.</p>
@@ -196,7 +196,7 @@ dag_k2 = learn_struct_K2(cases, node_sizes, order, 'max_fan_in', 8);
 
 <h4><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Initializing a Bayesian Network</h4>
 
-<p>Let is create a Bayesian network with the generated DAG:</p>
+<p>We can now create a Bayesian network with the generated DAG:</p>
 <pre><code>bnet_k2 = mk_bnet(dag_k2, node_sizes, 'names', {'X1','X2','X3','X4','X5','X6','X7','X8','X9'}, 'discrete', 1:9);
 </pre></code>
 <br>
